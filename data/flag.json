@@ -1,0 +1,17 @@
+[
+	{
+		"Id": "jp"
+		"Name": "Japan",
+		"Speed": 149.616
+	},
+	{
+		"Id": "se"
+		"Name": "Sweden",
+		"Speed": 101.807
+	},
+	{
+		"Id": "no"
+		"Name": "Norway",
+		"Speed": 72.003
+	},
+]

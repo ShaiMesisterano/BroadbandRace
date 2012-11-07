@@ -1,35 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
 		<meta charset="utf-8" />
 		<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
 		<script src="js/script.js" type="text/javascript"></script>
 		<link href="css/style.css" rel="stylesheet" type="text/css">
-		<title>HTML</title>
+		<title>Broadband Race</title>
 	</head>
 	<body>
 		<div id="container">
 			<div id="top" class="strip">
 				<header>
 					<h1>מרוץ האינטרנט העולמי</h1>
-					<h2>OECD-השוואת מהירות האינטרנט בישראל לשאר מדינות ה</h2>
+					<h2>השוואת מהירות האינטרנט בישראל לשאר מדינות ה-OECD</h2>
 				</header>
 			</div>
 			<div class="clear"></div>
 			<div id="content">
-				<div id="select_countries">
+				<div id="select_countries" class="box">
 					<h3>בחר מדינות להשוואה מול ישראל:</h3>
-					<input type="checkbox" name="country" value="country1" id="country1" />
-					<label for="country1">country1</label><br />
+					<img id="flag1" class="flag" width="50" src="http://www.geonames.org/flags/x/jp.gif">
+					<label for="flag1">country1</label>
+					<br />
 					<input type="checkbox" name="country" value="country2" id="country2" />
-					<label for="country2">country2</label><br />
+					<label for="country2">country2</label>
+					<br />
 					<input type="checkbox" name="country" value="country3" id="country3" />
-					<label for="country3">country3</label><br />
+					<label for="country3">country3</label>
+					<br />
 					<input type="checkbox" name="country" value="country4" id="country4" />
-					<label for="country4">country4</label><br />
+					<label for="country4">country4</label>
+					<br />
 					<input type="checkbox" name="country" value="country5" id="country5" />
-					<label for="country5">country5</label><br />
-					<button id="start_race">התחל מירוץ מהירויות</button>
+					<label for="country5">country5</label>
+					<br />
+					<button id="start_race">
+						התחל מירוץ מהירויות
+					</button>
 				</div>
 				<div id="race">
 					<div class="grass"></div>
@@ -37,28 +44,43 @@
 					<div class="margin"></div>
 					<div class="clear"></div>
 					<div id="road">
+						<div id="countdown">3</div>
 						<div id="start_point"></div>
-						<div class="lane"></div>
-						<div class="lane"></div>
-						<div class="lane"></div>
-						<div id="flag"></div>
+						<div class="car">
+							<object id="svg" type="image/svg+xml" data="images/car.svg" width="50" height="10"></object>
+							<img class="flag" width="20" src="http://www.geonames.org/flags/x/jp.gif">
+						</div>
 					</div>
+					<div class="lane"></div>
+					<div class="lane"></div>
+					<div class="lane"></div>
+					<div id="flag"></div>
 					<div class="clear"></div>
 					<div class="margin"></div>
 					<div class="clear"></div>
 					<div class="grass"></div>
 				</div>
+				<div id="race_results" class="box">
+					<h3>תוצאות המרוץ:</h3>
+					<li>
+						country1
+					</li>
+					<li>
+						country1
+					</li>
+					<li>
+						country1
+					</li>
+					<button id="start_race">
+						צפה ברשימת המהירויות המלאה
+					</button>
+				</div>
 			</div>
-			<div id="bottom" class="strip">
-				<footer>
-					<div id="right">
-						&copy; נבנה ע"י <a href="http://il.linkedin.com/pub/shai-mesisterano/48/215/4a2" target="_blank">שי מסיסטרנו</a>
-					</div>
-					<div id="left">
-						מקור הנתונים: <a href="http://www.oecd.org/">ארגון ה-OECD</a>
-					</div>
-				</footer>
-			</div>
+		</div>
+		<div id="bottom" class="strip">
+			<footer>
+				נבנה ע"י <a href="http://il.linkedin.com/pub/shai-mesisterano/48/215/4a2" target="_blank">שי מסיסטרנו</a>  &copy; | מקור הנתונים: <a href="http://www.oecd.org/">ארגון ה-OECD</a>
+			</footer>
 		</div>
 	</body>
 </html>
