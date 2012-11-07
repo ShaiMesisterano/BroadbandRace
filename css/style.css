@@ -1,0 +1,97 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	direction: rtl;
+	font: 12px Arial;
+	color: #fff;
+	height: 100%;
+	width: 100%;
+}
+.clear {
+	clear: both
+}
+#container{
+	position: relative;
+	height: 100%;
+	width: 100%;
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#222),to(#555))
+}
+#bottom {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+#bottom #right {
+	float: right;
+	width: 50%
+}
+#bottom #left {
+	float: left;
+	width: 50%
+}
+/* Start - Moving Grass Animation */
+@-webkit-keyframes MOVING-GRASS{
+	from{
+		background-position: -1024px;
+	}
+	to{
+		background-position: 0;
+	}
+}
+#content #race .grass {
+	background: url(../images/grass.jpg);
+	height: 100px;
+	-webkit-animation-name: MOVING-GRASS;
+	-webkit-animation-duration: 10s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+}
+/* End - Moving Grass Animation */
+/* Start - Road */
+#content #race #road{
+	position: relative;
+	height: 200px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#111), color-stop(0.25, #222), color-stop(0.5, #111), color-stop(0.75, #222), to(#111));
+}
+/* End - Road */
+/* Start - Lane */
+#content #race #road .lane{
+	float: left;
+	width: 170px;
+	height: 10px;
+	border-radius: 4px;
+	background: #fff;
+	margin-left: 180px;
+}
+/* End - Lane */
+/* Start - Start Point */
+#content #race #road #start_point{
+	position: absolute;
+	left: 50px;
+	width: 20px;
+	height: 100%;
+	background: url(../images/start.gif);
+}
+/* End - Start Point */
+/* Start - Flag */
+#content #race #road #flag{
+	position: absolute;
+	right: 50px;
+	top: 50px;
+	width: 175px;
+	height: 110px;
+	background: url(../images/flag.svg);
+}
+/* End - Flag */
+/* Start - Margin */
+#content #race .margin{
+	margin: 10px 0;
+	background: url(../images/margin_bg.png);
+	height: 10px;
+}
+/* End - Margin */
+.strip {
+	width: 100%;
+	height: 50px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#45484D), to(black) )
+}
