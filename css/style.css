@@ -1,3 +1,4 @@
+/* Start - Elements */
 html, body {
 	direction: rtl;
 	font: 16px Arial;
@@ -16,6 +17,8 @@ a {
 a:hover {
 	text-decoration: underline;
 }
+/* End - Elements */
+/* Start - Attributes */
 .clear {
 	clear: both
 }
@@ -39,20 +42,6 @@ a:hover {
 #content #race {
 	display: none; /**/
 }
-/* Start - Open Box Animation */
-@-webkit-keyframes OPEN-BOX{
-	from {
-		width: 0;
-		height: 0;
-		opacity: 0;
-	}
-	to {
-		width: 200px;
-		height: 200px;
-		opacity: 1;
-	}
-}
-/* End - Open Box Animation */
 #content .box{
 	position: absolute;
 	top: 25%;
@@ -61,24 +50,10 @@ a:hover {
 	background: rgba(0,0,0,0.3);
 	border: solid 5px #ccc;
 	border-radius: 20px;
-	-webkit-animation-name: OPEN-BOX;
-	-webkit-animation-duration: 1s;
-	-webkit-animation-direction: alternate;
-	-webkit-animation-timing-function: ease-in-out;
 }
 #content #race_results {
 	display: none;
 }
-/* Start - Moving Grass Animation */
-@-webkit-keyframes MOVING-GRASS{
-	from {
-		background-position: -1024px;
-	}
-	to {
-	background-position: 0;
-	}
-}
-/* End - Moving Grass Animation */
 #content #race .grass {
 	background: url(../images/grass.jpg);
 	height: 100px;
@@ -142,3 +117,14 @@ a:hover {
 	text-align: center;
 	padding: 10px 20px;
 }
+/* End - Attributes */
+/* Start - Animations */
+@-webkit-keyframes MOVING-GRASS{
+	from {
+		background-position: -1024px;
+	}
+	to {
+	background-position: 0;
+	}
+}
+/* End - Animations */
