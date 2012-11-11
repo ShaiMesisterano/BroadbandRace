@@ -17,13 +17,11 @@
 			<div id="content">
 				<div id="select_countries" class="box">
 					<h3>בחר מדינות להשוואה מול ישראל:</h3>
-					<div id="flags">
-						<ul>
-							<script type="text/template" id="flags_template">
-								<h5><%= name %></h5>
-							</script>
-						</ul>
-					</div>
+					<ul id="flags">
+						<script type="text/template" id="flag_template">
+							<%= name %>
+						</script>
+					</ul>
 					<button id="start_race">
 						התחל מירוץ מהירויות
 					</button>
@@ -34,11 +32,14 @@
 					<div class="margin"></div>
 					<div class="clear"></div>
 					<div id="road">
-						<div id="countdown">3</div>
+						<div id="countdown">
+							3
+						</div>
 						<div id="start_point"></div>
-						<div class="car">
-							<object id="svg" type="image/svg+xml" data="images/car.svg" width="50" height="10"></object>
-							<img class="flag" width="20" src="http://www.geonames.org/flags/x/jp.gif">
+						<div id="cars">
+							<script type="text/template" id="car_template">
+								<embed id="car<%= id %>" src="images/car.svg" width="200"></embed>
+							</script>
 						</div>
 					</div>
 					<div class="lane"></div>
@@ -69,7 +70,7 @@
 		</div>
 		<div id="bottom" class="strip">
 			<footer>
-				נבנה ע"י <a href="http://il.linkedin.com/pub/shai-mesisterano/48/215/4a2" target="_blank">שי מסיסטרנו</a>  &copy; | מקור הנתונים: <a href="http://www.oecd.org/">ארגון ה-OECD</a>
+				נבנה ע"י <a href="http://il.linkedin.com/pub/shai-mesisterano/48/215/4a2" target="_blank">שי מסיסטרנו</a> &copy; | מקור הנתונים: <a href="http://www.oecd.org/">ארגון ה-OECD</a>
 			</footer>
 		</div>
 	</body>

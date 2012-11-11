@@ -1,16 +1,14 @@
 [
 	{
-		"id": "jp",
+		"id": "1",
 		"name": "Japan",
 		"speed": 149.616
-	},
-	{
-		"id": "se",
+	}, {
+		"id": "2",
 		"name": "Sweden",
 		"speed": 101.807
-	},
-	{
-		"id": "no",
+	}, {
+		"id": "3",
 		"name": "Norway",
 		"speed": 72.003
 	}
