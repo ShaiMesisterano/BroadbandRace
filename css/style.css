@@ -5,6 +5,7 @@ html, body {
 	color: #fff;
 	height: 100%;
 	width: 100%;
+	overflow: hidden;
 }
 html, body, h1, h2, h3, h4, h5 {
 	margin: 0;
@@ -29,9 +30,9 @@ a:hover {
 	background-image: -webkit-gradient(linear,left top,left bottom,from(#222),to(#555))
 }
 #bottom {
-	position: absolute;
+	position: fixed;
 	right: 0;
-	bottom: 0;
+	top: 820px;
 }
 #bottom #right {
 	float: right;
@@ -39,91 +40,147 @@ a:hover {
 #bottom #left {
 	float: left;
 }
-#content #race {
-	background: -webkit-gradient(linear, left top, left bottom, from(#111), color-stop(0.25, #222), color-stop(0.5, #111), color-stop(0.75, #222), to(#111));
-}
 #content .box{
-	display: none; /**/
-	position: absolute;
-	top: 25%;
-	right: 50%;
+	position: relative;
+	margin: 20px auto;
 	padding: 20px;
 	background: rgba(0,0,0,0.3);
 	border: solid 5px #ccc;
 	border-radius: 20px;
 }
-#content #race_results {
-	display: none;
+/* Start - Countries */
+#content #countries{
+	width: 940px;
+	height: 650px;
 }
-#content #race .grass {
-	display: none; /**/
-	background: url(../images/grass.jpg);
-	height: 100px;
-	-webkit-animation-name: MOVING-GRASS;
-	-webkit-animation-duration: 10s;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-iteration-count: infinite;
+#content #countries h3{
+	font-size: 40px;
+	text-align: center;
+}
+/* End - Countries */
+#content #race {
+	
 }
 #content #race #road {
+	display: none;
 	position: absolute;
-	height: 600px;
-	width: 2000px;
+	width: 8000px;
+	height: 720px;
+	top: 100px;
 	left: 0;
+	background: -webkit-gradient(linear, left top, left bottom, from(#111), color-stop(0.25, #222), color-stop(0.5, #111), color-stop(0.75, #222), to(#111));
+}
+/* Start - Grass */
+#content #race #road .grass {
+	position: absolute;
+	left: 0;
+	width: 8000px;
+	height: 100px;
+	background: url(../images/grass.jpg);
+}
+#content #race #road #grass_top {
 	top: 0;
 }
-#content #race #road .lane {
-	float: left;
-	width: 170px;
-	height: 10px;
-	border-radius: 4px;
-	background: #fff;
-	margin-left: 180px;
+#content #race #road #grass_bottom {
+	bottom: 0;
 }
+/* End - Grass */
+/* Start - Lanes */
+#content #race #road .lane {
+	position: absolute;
+	left: 250px;
+	width: 8000px;
+	height: 10px;
+	background: url(../images/lane.gif);
+}
+#content #race #road #lane1 {
+	top: 200px;
+}
+#content #race #road #lane2 {
+	top: 300px;
+}
+#content #race #road #lane3 {
+	top: 400px;
+}
+#content #race #road #lane4 {
+	top: 500px;
+}
+/* End - Lanes */
 #content #race #road .car {
 	position: absolute;
-	top: 0;
-	left: 0;
-}
-#content #race #road .car .flag {
-	position: absolute;
-	top: 35%;
-	left: 30%;
-}
-#content #race #road .car #path2853 {
-	fill: #ccc;
+	left: 10px;
 }
 #content #race #road #start_point {
-display: none; /**/
 	position: absolute;
-	top: 0;
-	left: 50px;
+	top: 130px;
+	left: 150px;
 	width: 20px;
-	height: 100%;
+	height: 460px;
 	background: url(../images/start.gif);
+}
+#content #race #road #countdown{
+	position: absolute;
+	top: 250px;
+	left: 200px;
+	font-size: 200px;
+	color: yellow;
+	text-shadow: 10px 10px 10px red;
+}
+/* Start - Flags */
+#content #race #road .car .flag {
+	position: absolute;
+	top: 16px;
+	left: 28px;
+	border: solid 1px #ccc;
 }
 #content #race #road #flag {
 	position: absolute;
-	right: 50px;
-	top: 50px;
+	right: 200px;
+	top: 250px;
 	width: 175px;
 	height: 110px;
 	background: url(../images/flag.svg);
 }
-#content #race .margin {
-	margin: 10px 0;
+#content #countries #flags .flag{
+	position: relative;
+	list-style-type: none;
+	float: right;
+	width: 100px;
+	padding: 5px 10px;
+	margin: 5px 10px;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 12px;
+}
+#content #countries #flags .flag h4{
+	display: none;
+	direction: ltr;
+	font-size: 14px;
+}
+/* hide OECD's flag because it's not supported by the API */
+#content #race #road .car #car_flag_oecd, #content #countries #flags #flag_oecd{
+	background: #fff;
+}
+/* End - Flags */
+/* Start - Margins */
+#content #race #road .margin {
+	position: absolute;
+	left: 0;
+	width: 8000px;
 	background: url(../images/margin_bg.png);
 	height: 10px;
 }
-#content #flags .flag{
-	list-style-type: none;
-	text-align: center;
-	border: solid 1px #ccc;
-	margin: 20px;
-	padding: 10px;
-	float: left;
+#content #race #margin_top {
+	top: 120px;
 }
+#content #race #margin_bottom {
+	bottom: 120px;
+}
+/* End - Margins */
 .strip {
 	width: 100%;
+	height: 100px;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#45484D), to(black) )
 }
 .strip footer{
@@ -131,13 +188,3 @@ display: none; /**/
 	padding: 10px 20px;
 }
 /* End - Attributes */
-/* Start - Animations */
-@-webkit-keyframes MOVING-GRASS{
-	from {
-		background-position: -1024px;
-	}
-	to {
-	background-position: 0;
-	}
-}
-/* End - Animations */​

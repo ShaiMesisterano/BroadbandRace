@@ -1,15 +1,143 @@
 [
 	{
-		"id": "1",
+		"id": "jp",
 		"name": "Japan",
 		"speed": 149.616
 	}, {
-		"id": "2",
+		"id": "se",
 		"name": "Sweden",
 		"speed": 101.807
 	}, {
-		"id": "3",
+		"id": "no",
 		"name": "Norway",
 		"speed": 72.003
+	}, {
+		"id": "pt",
+		"name": "Portugal",
+		"speed": 71.866
+	}, {
+		"id": "kr",
+		"name": "Korea",
+		"speed": 69.973
+	}, {
+		"id": "si",
+		"name": "Slovenia",
+		"speed": 57.552
+	}, {
+		"id": "ca",
+		"name": "Canada",
+		"speed": 52.029
+	}, {
+		"id": "fr",
+		"name": "France",
+		"speed": 51.968
+	}, {
+		"id": "nl",
+		"name": "Netherlands",
+		"speed": 48.333
+	}, {
+		"id": "fi",
+		"name": "Finland",
+		"speed": 43.434
+	}, {
+		"id": "oecd",
+		"name": "OECD",
+		"speed": 41.009
+	}, {
+		"id": "ee",
+		"name": "Estonia",
+		"speed": 37.774
+	}, {
+		"id": "tr",
+		"name": "Turkey",
+		"speed": 37.595
+	}, {
+		"id": "dk",
+		"name": "Denmark",
+		"speed": 36.513
+	}, {
+		"id": "au",
+		"name": "Australia",
+		"speed": 34.64
+	}, {
+		"id": "gb",
+		"name": "United Kingdom",
+		"speed": 34.444
+	}, {
+		"id": "pl",
+		"name": "Poland",
+		"speed": 30.642
+	}, {
+		"id": "it",
+		"name": "Italy",
+		"speed": 29.867
+	}, {
+		"id": "sk",
+		"name": "Slovak Republic",
+		"speed": 29.626
+	}, {
+		"id": "us",
+		"name": "United States",
+		"speed": 27.563
+	}, {
+		"id": "es",
+		"name": "Spain",
+		"speed": 26.81
+	}, {
+		"id": "hu",
+		"name": "Hungary",
+		"speed": 26.535
+	}, {
+		"id": "be",
+		"name": "Belgium",
+		"speed": 26.504
+	}, {
+		"id": "cz",
+		"name": "Czech Republic",
+		"speed": 25.693
+	}, {
+		"id": "ch",
+		"name": "Switzerland",
+		"speed": 23.052
+	}, {
+		"id": "lu",
+		"name": "Luxembourg",
+		"speed": 22.843
+	}, {
+		"id": "ie",
+		"name": "Ireland",
+		"speed": 22.674
+	}, {
+		"id": "de",
+		"name": "Germany",
+		"speed": 21.958
+	}, {
+		"id": "at",
+		"name": "Austria",
+		"speed": 21.723
+	}, {
+		"id": "nz",
+		"name": "New Zealand",
+		"speed": 21.663
+	}, {
+		"id": "is",
+		"name": "Iceland",
+		"speed": 21.155
+	}, {
+		"id": "cl",
+		"name": "Chile",
+		"speed": 19.008
+	}, {
+		"id": "il",
+		"name": "Israel",
+		"speed": 15.497
+	}, {
+		"id": "gr",
+		"name": "Greece",
+		"speed": 9.728
+	}, {
+		"id": "mx",
+		"name": "Mexico",
+		"speed": 5.325
 	}
 ]

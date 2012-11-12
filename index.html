@@ -15,56 +15,39 @@
 			</div>
 			<div class="clear"></div>
 			<div id="content">
-				<div id="select_countries" class="box">
-					<h3>בחר מדינות להשוואה מול ישראל:</h3>
+				<div id="countries" class="box">
+					<h3>בחר מדינות להשוואה מול ישראל: <span id="selected_count">1</span> מתוך 5 נבחרו עד כה</h3>
 					<ul id="flags">
 						<script type="text/template" id="flag_template">
-							<%= name %>
+							<h4>מקום <%= place %></h4>
+							<h5><%= name %></h5>
+							<img id="flag_<%= id %>" src="http://www.geonames.org/flags/x/<%= id %>.gif" width="50" height="30" alt="<%= name %>" />
+							<h4><%= speed %> Kbit/s</h4>
 						</script>
 					</ul>
-					<button id="start_race">
-						התחל מירוץ מהירויות
-					</button>
 				</div>
 				<div id="race">
-					<div class="grass"></div>
-					<div class="clear"></div>
-					<div class="margin"></div>
-					<div class="clear"></div>
 					<div id="road">
+						<div id="grass_top" class="grass"></div>
+						<div id="margin_top" class="margin"></div>
+						<div id="lane1" class="lane"></div>
+						<div id="lane2" class="lane"></div>
+						<div id="lane3" class="lane"></div>
+						<div id="lane4" class="lane"></div>
 						<div id="countdown">
 							3
 						</div>
 						<div id="start_point"></div>
 						<div id="cars">
 							<script type="text/template" id="car_template">
-								<embed id="car<%= id %>" src="images/car.svg" width="200"></embed>
+								<img id="car_flag_<%= id %>" class="flag" src="http://www.geonames.org/flags/x/<%= id %>.gif" width="20" height="15" alt="<%= name %>" />
+								<embed id="car_<%= id %>" src="images/car/<%= colorId%>.svg" width="200"></embed>
 							</script>
 						</div>
+						<div id="flag"></div>
+						<div id="margin_bottom" class="margin"></div>
+						<div id="grass_bottom" class="grass"></div>
 					</div>
-					<div class="lane"></div>
-					<div class="lane"></div>
-					<div class="lane"></div>
-					<div id="flag"></div>
-					<div class="clear"></div>
-					<div class="margin"></div>
-					<div class="clear"></div>
-					<div class="grass"></div>
-				</div>
-				<div id="race_results" class="box">
-					<h3>תוצאות המרוץ:</h3>
-					<li>
-						country1
-					</li>
-					<li>
-						country1
-					</li>
-					<li>
-						country1
-					</li>
-					<button id="start_race">
-						צפה ברשימת המהירויות המלאה
-					</button>
 				</div>
 			</div>
 		</div>
@@ -75,7 +58,6 @@
 		</div>
 	</body>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://www.html5canvastutorials.com/libraries/Three.js"></script>
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
