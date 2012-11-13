@@ -6,6 +6,7 @@ html, body {
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
+	overflow-y: visible;
 }
 html, body, h1, h2, h3, h4, h5 {
 	margin: 0;
@@ -27,20 +28,63 @@ a:hover {
 	position: relative;
 	height: 100%;
 	width: 100%;
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#222),to(#555))
+	background: #222222; /* Old browsers */
+	background: -moz-linear-gradient(top, #222222 0%, #555555 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#222222), color-stop(100%,#555555)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #222222 0%,#555555 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #222222 0%,#555555 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #222222 0%,#555555 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #222222 0%,#555555 100%); /* W3C */
+	filter: progid :DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#555555',GradientType=0 ); /* IE6-9 */
 }
-#bottom {
+#container #top {
+	position: relative;
+	width: 100%;
+	height: 100px;
+	font-family: 'AnkaCLM-Bold', Arial;
+	background: #45484d; /* Old browsers */
+	background: -moz-linear-gradient(top, #45484d 0%, #000000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #45484d 0%,#000000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #45484d 0%,#000000 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #45484d 0%,#000000 100%); /* W3C */
+	filter: progid :DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+#container #top #logo {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+#container #top h1 {
+	padding: 10px 150px;
+	font-style: italic;
+	font-size: 36px;
+	color: #FFEFCA;
+	text-shadow: 10px 10px 10px #000;
+}
+#container #top h2 {
+	padding: 0 150px;
+	font-size: 20px;
+}
+#container #bottom {
+	width: 100%;
+	height: 50px;
+	font-size: 12px;
 	position: fixed;
 	right: 0;
 	top: 820px;
 }
-#bottom #right {
+#container #bottom #right {
 	float: right;
 }
-#bottom #left {
+#container #bottom #left {
 	float: left;
 }
-#content .box{
+/* Start - Countries */
+#content #countries {
+	width: 940px;
+	height: 650px;
 	position: relative;
 	margin: 20px auto;
 	padding: 20px;
@@ -48,19 +92,56 @@ a:hover {
 	border: solid 5px #ccc;
 	border-radius: 20px;
 }
-/* Start - Countries */
-#content #countries{
-	width: 940px;
-	height: 650px;
-}
-#content #countries h3{
-	font-size: 40px;
+#content #countries h3 {
+	font-size: 30px;
 	text-align: center;
+	font-family: 'AnkaCLM-Bold', Arial;
+}
+#content #countries #selected_count_wrapper {
+	direction: ltr;
+	text-align: center;
+	font-style: italic;
+	margin: 0;
 }
 /* End - Countries */
-#content #race {
-	
+/* Start - Flags */
+#content #countries #flags .flag {
+	position: relative;
+	list-style-type: none;
+	float: right;
+	width: 100px;
+	padding: 5px 10px;
+	margin: 5px 10px;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 12px;
+	cursor: pointer;
 }
+#content #countries #flags .flag h4 {
+	display: none;
+	direction: ltr;
+	font-size: 14px;
+}
+#content #race #road .car .flag {
+	position: absolute;
+	top: 16px;
+	left: 28px;
+	border: solid 1px #ccc;
+}
+#content #race #road #flag {
+	position: absolute;
+	right: 200px;
+	top: 250px;
+	width: 175px;
+	height: 110px;
+	background: url(../images/flag.svg);
+}
+/* hide OECD's flag because it's not supported by the API */
+#content #race #road .car #car_flag_je, #content #countries #flags #flag_je {
+	visibility: hidden;
+}
+/* End - Flags */
 #content #race #road {
 	display: none;
 	position: absolute;
@@ -68,7 +149,14 @@ a:hover {
 	height: 720px;
 	top: 100px;
 	left: 0;
-	background: -webkit-gradient(linear, left top, left bottom, from(#111), color-stop(0.25, #222), color-stop(0.5, #111), color-stop(0.75, #222), to(#111));
+	background: #111111; /* Old browsers */
+	background: -moz-linear-gradient(top, #111111 0%, #222222 25%, #111111 50%, #222222 75%, #111111 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#111111), color-stop(25%,#222222), color-stop(50%,#111111), color-stop(75%,#222222), color-stop(100%,#111111)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #111111 0%,#222222 25%,#111111 50%,#222222 75%,#111111 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #111111 0%,#222222 25%,#111111 50%,#222222 75%,#111111 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #111111 0%,#222222 25%,#111111 50%,#222222 75%,#111111 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #111111 0%,#222222 25%,#111111 50%,#222222 75%,#111111 100%); /* W3C */
+	filter: progid :DXImageTransform.Microsoft.gradient( startColorstr='#111111', endColorstr='#111111',GradientType=0 ); /* IE6-9 */
 }
 /* Start - Grass */
 #content #race #road .grass {
@@ -118,51 +206,15 @@ a:hover {
 	height: 460px;
 	background: url(../images/start.gif);
 }
-#content #race #road #countdown{
+#content #race #road #countdown {
 	position: absolute;
 	top: 250px;
 	left: 200px;
 	font-size: 200px;
 	color: yellow;
+	font-family: Impact;
 	text-shadow: 10px 10px 10px red;
 }
-/* Start - Flags */
-#content #race #road .car .flag {
-	position: absolute;
-	top: 16px;
-	left: 28px;
-	border: solid 1px #ccc;
-}
-#content #race #road #flag {
-	position: absolute;
-	right: 200px;
-	top: 250px;
-	width: 175px;
-	height: 110px;
-	background: url(../images/flag.svg);
-}
-#content #countries #flags .flag{
-	position: relative;
-	list-style-type: none;
-	float: right;
-	width: 100px;
-	padding: 5px 10px;
-	margin: 5px 10px;
-	border: solid 1px #ccc;
-	border-radius: 5px;
-	text-align: center;
-	font-size: 12px;
-}
-#content #countries #flags .flag h4{
-	display: none;
-	direction: ltr;
-	font-size: 14px;
-}
-/* hide OECD's flag because it's not supported by the API */
-#content #race #road .car #car_flag_oecd, #content #countries #flags #flag_oecd{
-	background: #fff;
-}
-/* End - Flags */
 /* Start - Margins */
 #content #race #road .margin {
 	position: absolute;
@@ -178,13 +230,56 @@ a:hover {
 	bottom: 120px;
 }
 /* End - Margins */
-.strip {
-	width: 100%;
-	height: 100px;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#45484D), to(black) )
-}
-.strip footer{
+.strip footer {
 	text-align: center;
 	padding: 10px 20px;
 }
 /* End - Attributes */
+/* Start - Fonts */
+@font-face {
+	font-family: 'AnkaCLM-Bold';
+	src: url('AnkaCLM-Bold.otf') format('opentype');
+}
+/* End - Fonts */
+/* Start - Animations */
+.selected_flag{
+	animation: select_flag 0.5s linear 0 infinite alternate;
+/* Firefox: */
+-moz-animation: select_flag 0.5s linear 0 infinite alternate;
+/* Safari and Chrome: */
+-webkit-animation: select_flag 0.5s linear 0 infinite alternate;
+/* Opera: */
+-o-animation: select_flag 0.5s linear 0 infinite alternate;
+}
+@keyframes select_flag
+{
+0%   {background: transparent;}
+25%  {background: green;}
+50%  {background: transparent;}
+100% {background: green;}
+}
+
+@-moz-keyframes select_flag /* Firefox */
+{
+0%   {background: transparent;}
+25%  {background: green;}
+50%  {background: transparent;}
+100% {background: green;}
+}
+
+@-webkit-keyframes select_flag /* Safari and Chrome */
+{
+0%   {background: transparent;}
+25%  {background: green;}
+50%  {background: transparent;}
+100% {background: green;}
+}
+
+@-o-keyframes select_flag /* Opera */
+{
+0%   {background: transparent;}
+25%  {background: green;}
+50%  {background: transparent;}
+100% {background: green;}
+}
+/* End - Animations */

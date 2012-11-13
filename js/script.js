@@ -8,7 +8,7 @@ var CarCollection = Backbone.Collection.extend({
 });
 var FlagCollection = Backbone.Collection.extend({
 	model : FlagModel,
-	url : "data/flag.json"
+	url : "data/flag.json.jpeg"
 });
 
 /* Views */
@@ -57,7 +57,7 @@ var CarView = Backbone.View.extend({
 	driveCar : function() {
 		// increase car's position by its speed value, and make the moving object to follow it
 		if(this.isDriving === true) {
-			var carSpeed = this.model.get("speed") / 2; // decrease speed to extend the overall time of driving
+			var carSpeed = this.model.get("speed") / 1.5; // decrease speed to extend the overall time of driving
 			var _this = this;
 			_this.interval = setInterval(function() {
 				// move the car by changing its left position
@@ -69,8 +69,9 @@ var CarView = Backbone.View.extend({
 					// move the road and the background objects
 					currentLeft = $("#road").position().left;
 					newLeft = currentLeft - carSpeed;
-					// if it's not the end of the road					
-					if (newLeft > -6000){
+					// if it's not the end of the road
+					var endLeft = 8000 - $(window).width();
+					if (newLeft > -endLeft){
 						$("#road").css('left', newLeft + 'px');
 					}
 					else if ($(_this.el).position().left > 8000){
@@ -89,6 +90,8 @@ var CarView = Backbone.View.extend({
 		$('#countries h3').text("תוצאות המרוץ");
 		// display speed
 		$('#countries h4').show();
+		// hide count
+		$('#selected_count_wrapper').hide();
 		clearInterval(this.interval);
 	}
 });
@@ -161,6 +164,7 @@ var FlagView = Backbone.View.extend({
 		appRouter.focusedCarId = "il";
 	},
 	toggleFlag : function(init) {
+		$(this.el).toggleClass('selected_flag'); //start/stop animation
 		// do not allow to unselect Israel, unless it's a part of the initiation
 		if (this.model.get('id') !== 'il' || init === true){
 			if (this.model.get('selected') === true){ // if the current model is selected already
@@ -181,12 +185,10 @@ var FlagView = Backbone.View.extend({
 		}
 	},
 	selectFlag: function(){
-		$(this.el).css('background', 'transparent');/**/
 			this.model.set({'selected': false});
 			appRouter.carCollection.remove(this.model);
 	},
 	unselectFlag: function(){
-		$(this.el).css('background', 'green');/**/
 			this.model.set({'selected': true});
 			appRouter.carCollection.add(this.model);
 	}
