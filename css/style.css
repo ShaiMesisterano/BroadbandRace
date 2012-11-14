@@ -153,6 +153,7 @@ a:hover {
 	width: 175px;
 	height: 110px;
 	background: url(../images/flag.svg);
+z-index:0;/**/
 }
 /* hide OECD's flag because it's not supported by the API */
 #content #race #road .car #car_flag_je, #content #countries #flags #flag_je {
@@ -169,6 +170,7 @@ a:hover {
 	color: #fff;
 	text-align: center;
 	font-size: 10px;
+	z-index: 1;
 }
 #content #race #road {
 	display: none;
@@ -225,6 +227,7 @@ a:hover {
 #content #race #road .car {
 	position: absolute;
 	left: 10px;
+	z-index: 1;
 }
 #content #race #road #start_point {
 	position: absolute;
@@ -271,6 +274,7 @@ a:hover {
 /* End - Fonts */
 /* Start - Animations */
 .selected_flag{
+	background: green;
 	animation: select_flag 0.5s linear 0 infinite alternate;
 /* Firefox: */
 -moz-animation: select_flag 0.5s linear 0 infinite alternate;
