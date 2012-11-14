@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<link href="css/style.css" rel="stylesheet" type="text/css">
-		<title>Broadband Race</title>
+		<title>מרוץ מהירויות החיבור</title>
 	</head>
 	<body>
 		<div id="container">
@@ -18,7 +18,9 @@
 			<div id="content">
 				<div id="countries">
 					<h3>בחר מדינות להשוואה מול ישראל</h3>
-					<div id="selected_count_wrapper"><span id="selected_count">1</span> / 5</div>
+					<div id="subtitle">
+						<span id="selected_count">1</span> / 5
+					</div>
 					<ul id="flags">
 						<script type="text/template" id="flag_template">
 							<h4>מקום <%= place %></h4>
@@ -27,6 +29,9 @@
 							<h4><%= speed %> Kbit/s</h4>
 						</script>
 					</ul>
+					<button id="restart_race">
+						התחל מחדש
+					</button>
 				</div>
 				<div id="race">
 					<div id="road">
@@ -50,11 +55,18 @@
 						<div id="margin_bottom" class="margin"></div>
 						<div id="grass_bottom" class="grass"></div>
 					</div>
+					<div id="meters">
+							<script type="text/template" id="meter_template">
+								<%= name %><br />
+								<progress id="car_progress_<%= id %>" class="progress" max="<%= maximumMeterValue %>"></progress><br />
+								<span id="car_completed_<%= id %>">0</span> / 10000 Kbits</span>
+							</script>
+						</div>
 				</div>
 			</div>
 			<div id="bottom" class="strip">
 				<footer>
-					נבנה ע"י <a href="http://il.linkedin.com/pub/shai-mesisterano/48/215/4a2" target="_blank">שי מסיסטרנו</a> &copy; | מקור הנתונים: <a href="http://www.oecd.org/" target="_blank">ארגון ה-OECD</a>
+					נבנה ע"י <a href="http://il.linkedin.com/pub/shai-mesisterano/48/215/4a2" target="_blank">שי מסיסטרנו</a> &copy; | מקור הנתונים: <a href="http://www.oecd.org/" target="_blank">ארגון ה-OECD</a> |<a href="https://github.com/ShaiMesisterano/BroadbandRace " target="_blank"> לעמוד הפרויקט ב-GitHub</a>
 				</footer>
 			</div>
 		</div>

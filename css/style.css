@@ -97,11 +97,28 @@ a:hover {
 	text-align: center;
 	font-family: 'AnkaCLM-Bold', Arial;
 }
-#content #countries #selected_count_wrapper {
-	direction: ltr;
+#content #countries #subtitle {
+	position: relative;
 	text-align: center;
 	font-style: italic;
 	margin: 0;
+	z-index: 1;
+}
+#content #countries #restart_race{
+	display: none;
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-left: -200px;
+	margin-top: -100px;
+	border-radius: 10px;
+	background-color: #00CCFF;
+	font-size: 45px;
+	font-weight: bold;
+	width: 200px;
+	height: 200px;
+	z-index: 1;
 }
 /* End - Countries */
 /* Start - Flags */
@@ -142,10 +159,21 @@ a:hover {
 	visibility: hidden;
 }
 /* End - Flags */
+#content #race .meter{
+	direction: ltr;
+	position: absolute;
+	width: 125px;
+	right: 28px;
+	border: solid 1px #fff;
+	background: #000;
+	color: #fff;
+	text-align: center;
+	font-size: 10px;
+}
 #content #race #road {
 	display: none;
 	position: absolute;
-	width: 8000px;
+	width: 10000px;
 	height: 720px;
 	top: 100px;
 	left: 0;
@@ -162,7 +190,7 @@ a:hover {
 #content #race #road .grass {
 	position: absolute;
 	left: 0;
-	width: 8000px;
+	width: 10000px;
 	height: 100px;
 	background: url(../images/grass.jpg);
 }
@@ -177,7 +205,7 @@ a:hover {
 #content #race #road .lane {
 	position: absolute;
 	left: 250px;
-	width: 8000px;
+	width: 10000px;
 	height: 10px;
 	background: url(../images/lane.gif);
 }
@@ -219,7 +247,7 @@ a:hover {
 #content #race #road .margin {
 	position: absolute;
 	left: 0;
-	width: 8000px;
+	width: 10000px;
 	background: url(../images/margin_bg.png);
 	height: 10px;
 }

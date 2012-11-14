@@ -12,6 +12,34 @@ var FlagCollection = Backbone.Collection.extend({
 });
 
 /* Views */
+var CarsView = Backbone.View.extend({
+	el : '#cars',
+	initialize : function() {
+		// populate models and create views with them
+		var carsModels = appRouter.carCollection.models;
+		this.createCars(carsModels);
+	},
+	createCars : function(carsModels) {
+		// loop through flags data and create their animations
+		var _this = this;
+		// initialize new car's top position and color ID
+		var colorId = 1;
+		var topPosition = 140;
+		_.each(carsModels, function(carModel) {
+			// set & increase new car's top position
+			carModel.set({
+				'topPosition' : topPosition,
+				'colorId' : colorId++
+			});
+			topPosition += 95;
+			var carView = new CarView({
+				model : carModel
+			});
+			// append car view
+			$(_this.el).append(carView.createCar().el);
+		});
+	}
+});
 var CarView = Backbone.View.extend({
 	className : "car",
 	template : _.template($('#car_template').html()),
@@ -33,6 +61,7 @@ var CarView = Backbone.View.extend({
 		return this;
 	},
 	setPosition : function(carModel) {
+		// set car position
 		$(this.el).css('top', carModel.get('topPosition') + 'px');
 	},
 	countDown : function(number) {
@@ -44,7 +73,7 @@ var CarView = Backbone.View.extend({
 		setTimeout(function() {
 			$("#countdown").fadeOut();
 			// boolean to start/stop driving
-			_this.isDriving = true;
+			appRouter.isCarDriving = true;
 			// start driving
 			_this.driveCar();
 		}, 4000);
@@ -56,67 +85,125 @@ var CarView = Backbone.View.extend({
 	},
 	driveCar : function() {
 		// increase car's position by its speed value, and make the moving object to follow it
-		if(this.isDriving === true) {
-			var carSpeed = this.model.get("speed") / 1.5; // decrease speed to extend the overall time of driving
+		if(appRouter.isCarDriving === true) {
+			// decrease speed to extend the overall time of driving
 			var _this = this;
 			_this.interval = setInterval(function() {
-				// move the car by changing its left position
-				var currentLeft = $(_this.el).position().left;
-				var newLeft = currentLeft + carSpeed;
-				$(_this.el).css('left', newLeft + 'px');
-				// if it's the car that is focused
-				if(_this.model.get("id") == appRouter.focusedCarId) {
-					// move the road and the background objects
-					currentLeft = $("#road").position().left;
-					newLeft = currentLeft - carSpeed;
-					// if it's not the end of the road
-					var endLeft = 8000 - $(window).width();
-					if (newLeft > -endLeft){
-						$("#road").css('left', newLeft + 'px');
-					}
-					else if ($(_this.el).position().left > 8000){
-						// if the car has reached to the end, stop the interval
-						_this.endRace();
-					}
+				var carId = _this.model.get("id");
+				var carSpeed = _this.model.get("speed");
+				var currentCarLeft = $(_this.el).position().left;
+				_this.animateCar(_this.el, carSpeed, currentCarLeft);
+				_this.animateRoad(carId, carSpeed, currentCarLeft);
+				_this.increaseProgressValue(carId, carSpeed);
+				if(_this.isAllMetersMaximized() === true) {
+					_this.endRace();
 				}
 			}, 1);
 		}
 	},
-	endRace: function(){
-		//display race & overall results
+	animateCar : function(carElement, carSpeed, currentCarLeft) {
+		// move the car by changing its left position
+		var newCarLeft = currentCarLeft + carSpeed;
+		$(carElement).css('left', newCarLeft + 'px');
+	},
+	animateRoad : function(carId, carSpeed, currentCarLeft) {
+		if(carId === appRouter.focusedCarId) {
+			// move the road and the background objects
+			currentRoadLeft = $("#road").position().left;
+			newRoadLeft = currentRoadLeft - carSpeed;
+			// if it's not the end of the road
+			var endRoadLeft = $("#road").width() - $(window).width();
+			// if it's not the end of the road
+			if(newRoadLeft > -endRoadLeft) {
+				$("#road").css('left', newRoadLeft + 'px');
+			}
+		}
+	},
+	increaseProgressValue : function(carId, carSpeed) {
+		var maximumMeterValue = $('#car_progress_' + carId).attr('max');
+		var currentProgressValue = $('#car_progress_' + carId).attr('value');
+		// don't cross the meter's max value
+		if(currentProgressValue < maximumMeterValue) {
+			$('#car_progress_' + carId).attr('value', currentProgressValue + carSpeed);
+			var roundedCurrentProgressValue = Math.round(currentProgressValue + carSpeed);
+			$('#car_completed_' + carId).text(roundedCurrentProgressValue);
+		} else {
+			// initialize the value to prevent a value that is larger than maximum
+			$('#car_completed_' + carId).text(maximumMeterValue);
+		}
+	},
+	isAllMetersMaximized : function() {
+		var allMetersMaximized = true;
+		// iterate progresses and try to find a value that is smaller than maximum
+		$('.progress').each(function(index) {
+			var currentProgressValue = $(this).attr('value');
+			var currentProgressMaximum = $(this).attr('max');
+			if (currentProgressValue < currentProgressMaximum){
+				allMetersMaximized = false;
+			}
+		});
+		return allMetersMaximized;
+	},
+	endRace : function() {
+		//display results
 		$('#road').css('opacity', '0.1');
+		$('#meters').css('opacity', '0.1');
 		$('#countries').css('background', 'rgba(0,0,0,1)').fadeIn();
-		// change title
-		$('#countries h3').text("תוצאות המרוץ");
-		// display speed
 		$('#countries h4').show();
-		// hide count
-		$('#selected_count_wrapper').hide();
+		$('#restart_race').show();
+		$('#subtitle').show();
+		// change title
+		$('#countries h3').text("דירוג סופי - מהירות הורדה ממוצעת לפי מדינה");
+		// change subtitle and show it
+		$("#subtitle").html('לפי הדו"ח <a style="direction: ltr" href="http://www.oecd.org/internet/broadbandandtelecom/oecdbroadbandportal.htm#Services_and_speeds" target="_blank">Average advertised download speeds, by country</a>');
 		clearInterval(this.interval);
 	}
 });
-var CarsView = Backbone.View.extend({
-	el : '#cars',
+var MetersView = Backbone.View.extend({
+	el : '#meters',
 	initialize : function() {
-		// populate models and create views with them
 		var carsModels = appRouter.carCollection.models;
-		this.createCars(carsModels);
+		this.createMeters(carsModels);
 	},
-	createCars : function(carsModels) {
-		// loop through flags data and create their animations
+	createMeters : function(carsModels) {
 		var _this = this;
-		// initialize new car's top position and color ID
-		var colorId = 1;
-		var topPosition = 140;
-		_.each(carsModels, function(carModel) {
-			// set & increase new car's top position
-			carModel.set({'topPosition': topPosition, 'colorId': colorId++});
-			topPosition += 95;
-			var carView = new CarView({
-				model : carModel
+		var topPosition = 240;
+		_.each(carsModels, function(meterModel) {
+			// tranform car model into meter model
+			var maximumMeterValue = $('#road').width();
+			meterModel.set({
+				'topPosition' : topPosition,
+				'maximumMeterValue' : maximumMeterValue
 			});
-			$(_this.el).append(carView.createCar().el);
+			topPosition += 95;
+			var meterView = new MeterView({
+				model : meterModel
+			});
+			// append meter view
+			$(_this.el).append(meterView.createMeter().el);
 		});
+	}
+});
+var MeterView = Backbone.View.extend({
+	className : "meter",
+	template : _.template($('#meter_template').html()),
+	createMeter : function() {
+		var meterModel = this.model;
+		var element = this.getElement(meterModel);
+		// set meter's position
+		this.setPosition(meterModel);
+		// return element to the parent view
+		return element;
+	},
+	getElement : function(carModel) {
+		// append in the current template
+		var meterElement = this.template(carModel.toJSON());
+		$(this.el).append(meterElement);
+		return this;
+	},
+	setPosition : function(carModel) {
+		// set car position
+		$(this.el).css('top', carModel.get('topPosition') + 'px');
 	}
 });
 var FlagsView = Backbone.View.extend({
@@ -132,7 +219,9 @@ var FlagsView = Backbone.View.extend({
 		// loop through flags data and create their display
 		var _this = this;
 		_.each(flagsModels, function(flagModel) {
-			flagModel.set({'place': ++speedPlace});
+			flagModel.set({
+				'place' : ++speedPlace
+			});
 			var flagView = new FlagView({
 				model : flagModel
 			});
@@ -155,42 +244,50 @@ var FlagView = Backbone.View.extend({
 		this.addIsraelToCollection();
 		return this;
 	},
-	addIsraelToCollection: function(){
+	addIsraelToCollection : function() {
 		// if the current model represents Israel, add it to the Cars Collection
-		if (this.model.get('id') === 'il'){
+		if(this.model.get('id') === 'il') {
 			this.toggleFlag(true);
 		}
 		// set the car id which the camera wil follow (Israel is default)
 		appRouter.focusedCarId = "il";
 	},
 	toggleFlag : function(init) {
-		$(this.el).toggleClass('selected_flag'); //start/stop animation
+		$(this.el).toggleClass('selected_flag');
+		//start/stop animation
 		// do not allow to unselect Israel, unless it's a part of the initiation
-		if (this.model.get('id') !== 'il' || init === true){
-			if (this.model.get('selected') === true){ // if the current model is selected already
-				this.selectFlag();			
-			}
-			else{
-				this.unselectFlag();	
+		if(this.model.get('id') !== 'il' || init === true) {
+			if(this.model.get('selected') === true) {// if the current model is selected already
+				this.selectFlag();
+			} else {
+				this.unselectFlag();
 			}
 			// update the selection count
 			$("#selected_count").text(appRouter.carCollection.length);
 			// if 5 cars were selected, create a view for the cars and display the race
-			if (appRouter.carCollection.length === 5){
+			if(appRouter.carCollection.length === 5) {
 				var carsView = new CarsView({
 					collection : this.carCollection
 				});
+				var metersView = new MetersView({
+					collection : this.carCollection
+				});
+				$('#subtitle').hide();
 				$('#road').fadeIn();
 			}
 		}
 	},
-	selectFlag: function(){
-			this.model.set({'selected': false});
-			appRouter.carCollection.remove(this.model);
+	selectFlag : function() {
+		this.model.set({
+			'selected' : false
+		});
+		appRouter.carCollection.remove(this.model);
 	},
-	unselectFlag: function(){
-			this.model.set({'selected': true});
-			appRouter.carCollection.add(this.model);
+	unselectFlag : function() {
+		this.model.set({
+			'selected' : true
+		});
+		appRouter.carCollection.add(this.model);
 	}
 });
 
@@ -200,8 +297,25 @@ var AppRouter = Backbone.Router.extend({
 		"*actions" : "load" /* Default Route */
 	},
 	load : function() {
-		this.loadFlags(); /* Load flags from JSON data */
+		this.preloadImages(["images/car/1.svg", "images/car/2.svg", "images/car/3.svg", "images/car/4.svg", "images/car/5.svg", "images/flag.svg", "images/grass.jpg", "images/lane.gif", "images/margin_bg.png", "images/start.gif"]);
+		this.setRestartButton();
+		this.setIsCarDriving();
+		// Load flags from JSON data
+		this.loadFlags();
 		this.loadCars();
+	},
+	preloadImages : function(arrayImages) {
+		$(arrayImages).each(function() {
+			(new Image()).src = this;
+		});
+	},
+	setRestartButton : function() {
+		$('#restart_race').click(function() {
+			window.location = window.location
+		})
+	},
+	setIsCarDriving : function() {
+		this.isCarDriving = false;
 	},
 	loadFlags : function() {
 		var flagCollection = new FlagCollection();
