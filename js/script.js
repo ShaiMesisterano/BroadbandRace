@@ -152,6 +152,7 @@ var CarView = Backbone.View.extend({
 		$('#countries h4').show();
 		$('#restart_race').show();
 		$('#subtitle').show();
+		$('#meters').hide();
 		// change title
 		$('#countries h3').text("דירוג סופי - מהירות הורדה ממוצעת לפי מדינה");
 		// change subtitle and show it
