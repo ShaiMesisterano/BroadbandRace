@@ -342,3 +342,5 @@ var AppRouter = Backbone.Router.extend({
 /* Create router instance and start application */
 var appRouter = new AppRouter();
 Backbone.history.start();
+
+// 
